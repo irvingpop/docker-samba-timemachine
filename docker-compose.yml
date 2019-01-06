@@ -1,13 +1,15 @@
 version: '3'
 services:
-  app:
-    image: willtho/samba-timemachine:latest
-    restart: always
+  samba-timemachine:
+    image: irvingpop/samba-timemachine:latest
     network_mode: host
+    build: .
+    restart: always
     environment:
-      TM_USER: timemachine
-      TM_PW: timemachine
-      VOLUME_SIZE_LIMIT: 512000
+      TM_USER: juniper
+      TM_PW: juniper
+      VOLUME_SIZE_LIMIT: 1024000
     volumes:
-      - './timemachine:/timemachine'
+      - '/atlas/shares:/shares'
+      - '/atlas/shares_var:/var'
       - '/etc/localtime:/etc/localtime:ro'
